@@ -1,0 +1,42 @@
+@echo off
+echo ========================================
+echo    🛡️ PediaSafeAI Launch Script
+echo ========================================
+echo by Ayesha Bibi, MPhil Pharmacy Practice Student (GCUF)
+echo ========================================
+
+echo.
+echo 🔧 Checking Python installation...
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ❌ Python not found. Please install Anaconda first.
+    echo 📥 Download from: https://www.anaconda.com/products/distribution
+    pause
+    exit /b 1
+)
+echo ✅ Python found!
+
+echo.
+echo 🔧 Installing/updating required packages...
+pip install -r requirements.txt
+if %errorlevel% neq 0 (
+    echo ❌ Error installing packages. Check internet connection.
+    pause
+    exit /b 1
+)
+
+echo.
+echo ✅ Setup complete!
+echo 🚀 Starting PediaSafeAI...
+echo.
+echo 📱 The application will open in your web browser
+echo 🔗 If it doesn't open automatically, go to: http://localhost:8501
+echo.
+echo ⚠️  To stop the application, press Ctrl+C in this window
+echo.
+
+streamlit run app.py
+
+echo.
+echo 👋 Application closed.
+pause
